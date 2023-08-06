@@ -5,5 +5,9 @@
 ### CodeSandBox
 
 JavaScript : [https://codesandbox.io/s/water-87wxhx?file=/index.html](https://codesandbox.io/s/water-87wxhx?file=/index.html) \
+<<<<<<< HEAD
 React : [https://codesandbox.io/s/water-wncwg3?file=/src/App.js](https://codesandbox.io/s/water-wncwg3?file=/src/App.js)
 ..
+=======
+React : [https://codesandbox.io/s/water-dqnnmm?file=/src/styles.jsx](https://codesandbox.io/s/water-dqnnmm?file=/src/styles.jsx)
+>>>>>>> 72f1c01e61721a644be732deea16229ab8792e73
