@@ -1,14 +1,5 @@
 import React, { useState } from "react";
-import {
-  Wrap,
-  GlobalStyle,
-  Header,
-  Logo,
-  Input,
-  Icons,
-  NavBar,
-  Link,
-} from "./styles";
+import { Wrap, Anchor, Nav, GlobalStyle } from "./styles";
 
 const links = [
   { href: "#", text: "Home", delay: 0 },
@@ -19,37 +10,47 @@ const links = [
 ];
 
 const App = () => {
-  const [navOpen, setNavOpen] = useState(false);
+  const [isOpened, setIsOpened] = useState(false);
+
+  const toggleIsOpened = () => {
+    setIsOpened(!isOpened);
+  };
 
   return (
     <>
       <GlobalStyle />
-      <Wrap>
-        <Header>
-          <Logo href="#">Logo</Logo>
-          <Input
-            type="checkbox"
-            id="check"
-            checked={navOpen}
-            onChange={() => setNavOpen(!navOpen)}
-          />
-          <Icons htmlFor="check" navOpen={navOpen}>
-            <i className="bx bx-menu" id="menu-icon"></i>
-            <i className="bx bx-x" id="close-icon"></i>
-          </Icons>
-          <NavBar navOpen={navOpen}>
-            {links.map((link, index) => (
-              <Link
-                href={link.href}
-                delay={link.delay}
-                key={index}
-                navOpen={navOpen}
-              >
-                {link.text}
-              </Link>
-            ))}
-          </NavBar>
-        </Header>
+      <Wrap id="body">
+        <header className="header">
+          <a href="#" className="logo">
+            Logo
+          </a>
+          <label htmlFor="" className="icons">
+            {!isOpened && (
+              <i
+                onClick={toggleIsOpened}
+                className="bx bx-menu"
+                id="menu-icon"
+              />
+            )}
+            {isOpened && (
+              <i onClick={toggleIsOpened} className="bx bx-x" id="close-icon" />
+            )}
+          </label>
+          <Nav isOpened={isOpened}>
+            {links.map((val, index) => {
+              return (
+                <Anchor
+                  isOpened={isOpened}
+                  delay={index}
+                  href={val.href}
+                  key={index}
+                >
+                  {val.text}
+                </Anchor>
+              );
+            })}
+          </Nav>
+        </header>
       </Wrap>
     </>
   );
