@@ -8,6 +8,7 @@ import img_3 from "./img-3.png";
 const App = () => {
   const [scrollValue, setScrollValue] = useState(0);
   const [visibleImage, setVisibleImage] = useState("img-1");
+
   const [ref1, inView1] = useInView();
   const [ref2, inView2] = useInView();
   const [ref3, inView3] = useInView();
@@ -19,6 +20,7 @@ const App = () => {
     if (inView3) setVisibleImage("img-3");
   }, [inView1, inView2, inView3]);
 
+  // calculating scroll percentage
   useEffect(() => {
     const handleScroll = () => {
       const percentOfScreenHeightScrolled = window.scrollY / window.innerHeight;
@@ -59,7 +61,7 @@ const App = () => {
               web services.
             </p>
           </div>
-          <div className="right"></div>
+          <div className="right" />
         </TopSection>
         <Section ref={ref1}>
           <h1>Completely Visual</h1>
