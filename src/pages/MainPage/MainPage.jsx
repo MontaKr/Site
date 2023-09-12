@@ -1,12 +1,13 @@
 import React, { useEffect, useRef } from "react";
 import { Wrap, Box } from "./styles";
+import Particles from "../../components/particles/Particles";
 
 const MainPage = () => {
   const textRef = useRef(null);
 
   const boxes = [
     { id: 1, color: "0077b6" },
-    { id: 5, color: "90e0ef" },
+    { id: 2, color: "90e0ef" },
   ];
 
   useEffect(() => {
@@ -56,7 +57,7 @@ const MainPage = () => {
           centerY = rect.top + rect.height / 2;
 
         const rangeX = (e.clientX - centerX) / radius,
-          rangeY = (e.clientY - centerY) / radius;
+          rangeY = (6 * (e.clientY - centerY)) / radius;
 
         shift(box, index, rangeX, rangeY);
       });
@@ -93,14 +94,17 @@ const MainPage = () => {
   }, []);
 
   return (
-    <Wrap ref={textRef}>
-      {boxes.map((box) => (
-        <Box key={box.id} color={box.color} className="boxClass">
-          <h1>Hi I'm MontaKr</h1>
-          <h2>Frontend Developer</h2>
-        </Box>
-      ))}
-    </Wrap>
+    <>
+      <Particles />
+      <Wrap ref={textRef}>
+        {boxes.map((box) => (
+          <Box key={box.id} color={box.color} className="boxClass">
+            <h1>Hi I'm MontaKr</h1>
+            <h2>Frontend Developer</h2>
+          </Box>
+        ))}
+      </Wrap>
+    </>
   );
 };
 

@@ -3,7 +3,15 @@ import bg1 from "../../assets/background/bg1.jpg";
 
 export const Wrap = styled.div`
   min-height: 100vh;
-  background: url(${bg1});
+  background: linear-gradient(
+      #252525,
+      transparent,
+      transparent,
+      transparent,
+      #252525
+    ),
+    url(${bg1});
+
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
