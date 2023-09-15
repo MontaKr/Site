@@ -1,12 +1,16 @@
 import React from "react";
-import { GlobalStyle } from "./styles";
+import { GlobalStyle, MainContainer } from "./styles";
 import MainPage from "./pages/MainPage/MainPage";
+import Sidebar from "./components/sidebar/Sidebar";
 
 const App = () => {
   return (
     <>
       <GlobalStyle />
-      <MainPage />
+      <MainContainer>
+        <Sidebar />
+        <MainPage />
+      </MainContainer>
     </>
   );
 };

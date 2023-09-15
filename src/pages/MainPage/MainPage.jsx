@@ -1,8 +1,18 @@
 import React, { useEffect, useRef } from "react";
 import { Wrap, Box } from "./styles";
 import Particles from "../../components/particles/Particles";
+import { useStore } from "../../store/index";
 
 const MainPage = () => {
+  const { isMouseOverSidebar } = useStore((state) => state);
+
+  useEffect(() => {
+    console.log(
+      "MainPage rerendered due to isMouseOverSidebar change:",
+      isMouseOverSidebar
+    );
+  }, [isMouseOverSidebar]);
+
   const textRef = useRef(null);
 
   const boxes = [
@@ -10,6 +20,7 @@ const MainPage = () => {
     { id: 2, color: "90e0ef" },
   ];
 
+  //text moving effects
   useEffect(() => {
     const wrap = textRef.current;
     const boxesEls = wrap.querySelectorAll(".boxClass");
@@ -49,6 +60,9 @@ const MainPage = () => {
     };
 
     const shiftText = (e) => {
+      if (isMouseOverSidebar) {
+        return; // exit the function if the mouse is over the sidebar
+      }
       boxesEls.forEach((box, index) => {
         const rect = box.getBoundingClientRect(),
           radius = 1000;
@@ -72,6 +86,9 @@ const MainPage = () => {
 
     window.addEventListener("mousemove", shiftText);
     window.addEventListener("mousedown", (e) => {
+      if (isMouseOverSidebar) {
+        return;
+      }
       setActiveTo(true);
       shiftText(e);
     });
@@ -91,7 +108,7 @@ const MainPage = () => {
       window.removeEventListener("mouseup", resetText);
       document.body.removeEventListener("mouseleave", handleMouseLeave);
     };
-  }, []);
+  }, [isMouseOverSidebar]);
 
   return (
     <>

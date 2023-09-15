@@ -1,8 +1,9 @@
 import { useCallback } from "react";
 import Particles from "react-particles";
 import { loadFull } from "tsparticles";
+import React, { memo } from "react";
 
-export default function App() {
+const App = memo(function App() {
   const particlesInit = useCallback(async (engine) => {
     console.log(engine);
     await loadFull(engine);
@@ -129,4 +130,6 @@ export default function App() {
       }}
     />
   );
-}
+});
+
+export default App;

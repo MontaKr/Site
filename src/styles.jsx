@@ -1,4 +1,4 @@
-import { createGlobalStyle } from "styled-components";
+import styled, { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
   * {
@@ -9,3 +9,5 @@ export const GlobalStyle = createGlobalStyle`
     font-family: "Poppins", sans-serif;
   }
 `;
+
+export const MainContainer = styled.div``;
