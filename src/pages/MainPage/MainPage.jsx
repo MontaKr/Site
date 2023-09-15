@@ -6,13 +6,6 @@ import { useStore } from "../../store/index";
 const MainPage = () => {
   const { isMouseOverSidebar } = useStore((state) => state);
 
-  useEffect(() => {
-    console.log(
-      "MainPage rerendered due to isMouseOverSidebar change:",
-      isMouseOverSidebar
-    );
-  }, [isMouseOverSidebar]);
-
   const textRef = useRef(null);
 
   const boxes = [
@@ -61,7 +54,7 @@ const MainPage = () => {
 
     const shiftText = (e) => {
       if (isMouseOverSidebar) {
-        return; // exit the function if the mouse is over the sidebar
+        return;
       }
       boxesEls.forEach((box, index) => {
         const rect = box.getBoundingClientRect(),

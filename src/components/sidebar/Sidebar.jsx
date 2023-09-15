@@ -7,15 +7,54 @@ import { ChatboxOutline } from "react-ionicons";
 import { CameraOutline } from "react-ionicons";
 import { ConstructOutline } from "react-ionicons";
 import { useStore } from "../../store/index";
+import { Link } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 const Sidebar = () => {
-  useEffect(() => {
-    console.log("Sidebar rerendered");
-  });
+  const location = useLocation();
+
+  const links = [
+    {
+      name: "Home",
+      path: "/",
+      iconType: HomeOutline,
+      color: "rgb(255, 153, 200)",
+    },
+    {
+      name: "About",
+      path: "/about",
+      iconType: PersonOutline,
+      color: "rgba(252, 246, 189,0.7)",
+    },
+    {
+      name: "Messages",
+      iconType: ChatboxOutline,
+      color: "rgba(208, 244, 222,0.8)",
+    },
+    {
+      name: "Photos",
+      iconType: CameraOutline,
+      color: "rgb(169, 222, 249)",
+    },
+    {
+      name: "Settings",
+      iconType: ConstructOutline,
+      color: "rgb(228, 193, 249)",
+    },
+  ];
+
+  const determineActiveLink = () => {
+    const activeItem = links.find((link) => link.path === location.pathname);
+    return activeItem ? activeItem.name : "Home";
+  };
 
   const { enterSidebar, leaveSidebar } = useStore();
 
-  const [activeLink, setActiveLink] = useState("Home");
+  const [activeLink, setActiveLink] = useState(determineActiveLink);
+
+  useEffect(() => {
+    setActiveLink(determineActiveLink());
+  }, [location]);
 
   const navigationRef = useRef(null);
 
@@ -24,38 +63,6 @@ const Sidebar = () => {
   };
 
   console.log(activeLink);
-
-  const links = [
-    {
-      name: "Home",
-      icon: <HomeOutline color={activeLink === "Home" ? "#fff" : "#000"} />,
-      color: "rgb(255, 153, 200)",
-    },
-    {
-      name: "About",
-      icon: <PersonOutline color={activeLink === "About" ? "#fff" : "#000"} />,
-      color: "rgba(252, 246, 189,0.7)",
-    },
-    {
-      name: "Messages",
-      icon: (
-        <ChatboxOutline color={activeLink === "Messages" ? "#fff" : "#000"} />
-      ),
-      color: "rgba(208, 244, 222,0.8)",
-    },
-    {
-      name: "Photos",
-      icon: <CameraOutline color={activeLink === "Photos" ? "#fff" : "#000"} />,
-      color: "rgb(169, 222, 249)",
-    },
-    {
-      name: "Settings",
-      icon: (
-        <ConstructOutline color={activeLink === "Settings" ? "#fff" : "#000"} />
-      ),
-      color: "rgb(228, 193, 249)",
-    },
-  ];
 
   return (
     <>
@@ -69,15 +76,20 @@ const Sidebar = () => {
         <div ref={navigationRef} className="navigation">
           <ul>
             {links.map((val, idx) => {
+              const IconComponent = val.iconType;
               return (
                 <li
                   key={idx}
                   className={`list ${activeLink === val.name ? "active" : ""}`}
                   onClick={() => setActiveLink(val.name)}
                 >
-                  <a href="#" onClick={(e) => e.preventDefault()}>
-                    <span className="icon">{val.icon}</span>
-                  </a>
+                  <Link to={val.path}>
+                    <span className="icon">
+                      <IconComponent
+                        color={activeLink === val.name ? "#fff" : "#000"}
+                      />
+                    </span>
+                  </Link>
                 </li>
               );
             })}
