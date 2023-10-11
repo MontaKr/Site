@@ -35,8 +35,8 @@ const App = () => {
     <>
       <GlobalStyle />
       <Wrap>
-        <header className="header">
-          <a className="logo" href="#">
+        <div className="header">
+          <a href="#" className="logo">
             Logo
           </a>
           <nav className="navbar">
@@ -45,7 +45,7 @@ const App = () => {
             <a href="#">Services</a>
             <a href="#">Contact</a>
           </nav>
-        </header>
+        </div>
         <div className="container">
           {slideArray.map((val, idx) => {
             return (
@@ -80,9 +80,7 @@ const App = () => {
             );
           })}
           <div className="circle-darktransp" />
-
           <span className="line" />
-
           <span
             className={`rotate-btn ${rotateActive ? "active" : ""}`}
             onClick={handleRotate}
