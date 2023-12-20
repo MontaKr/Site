@@ -6,4 +6,3 @@
 JavaScript : [https://codesandbox.io/s/single-page-parallax-dvvqfn?resolutionWidth=1400&resolutionHeight=800&file=/index.html](https://codesandbox.io/s/single-page-parallax-dvvqfn?resolutionWidth=1400&resolutionHeight=800&file=/index.html) \
 React : [https://codesandbox.io/s/single-page-parallax-5sktrx?resolutionWidth=1400&resolutionHeight=800](https://codesandbox.io/s/single-page-parallax-5sktrx?resolutionWidth=1400&resolutionHeight=800)
 
->>>>>>> 014608588097e8e2d1055bdcad7260a0b83e6085
