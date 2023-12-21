@@ -9,7 +9,6 @@ export const GlobalStyle = createGlobalStyle`
     font-display: swap;
   }
 
-
   :root {
     --primary: #bdbfbe;
     --secondary: #d60000;
