@@ -1,5 +1,5 @@
 {
-  "name": "engagin-animation-23-12-24-",
+  "name": "scroll-trigger-clip-path-24-01-21-",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -10,11 +10,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "gsap": "^3.12.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "styled-components": "^6.1.3",
-    "styled-reset": "^4.5.1"
+    "styled-components": "^6.1.8",
+    "styled-reset": "^4.5.2"
   },
   "devDependencies": {
     "@types/react": "^18.2.43",
