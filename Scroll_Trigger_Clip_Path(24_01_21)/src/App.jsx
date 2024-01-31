@@ -31,12 +31,13 @@ const App = () => {
   const [isRefsReady, setIsRefsReady] = useState(false);
 
   useEffect(() => {
-    if (textRef.current.length === contentItems.length && imageRef.current.length === 2 && introImageRef.current) {
-      setIsRefsReady(true);
-    } else {
-      setIsRefsReady(false);
-    }
-  }, []);
+    const isReady = textRef.current.length === contentItems.length &&
+                    imageRef.current.length === 2 &&
+                    introImageRef.current != null;
+  
+    setIsRefsReady(isReady);
+  }, [contentItems]); 
+  
 
 
   useEffect(()=>{
@@ -235,3 +236,4 @@ const App = () => {
 }
 
 export default App
+
