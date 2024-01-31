@@ -4,4 +4,4 @@
 
 ### CodeSandBox
 JavaScript : [https://codesandbox.io/s/scroll-trigger-clip-path-x5f346?file=/index.html&resolutionWidth=1400&resolutionHeight=800](https://codesandbox.io/s/scroll-trigger-clip-path-x5f346?file=/index.html&resolutionWidth=1400&resolutionHeight=800) \
-React : []()
+React : [https://codesandbox.io/s/scroll-trigger-clip-path-t78s5s?resolutionWidth=1400&resolutionHeight=800](https://codesandbox.io/s/scroll-trigger-clip-path-t78s5s?resolutionWidth=1400&resolutionHeight=800)
