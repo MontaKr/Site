@@ -8,4 +8,4 @@ React / NextJs / TypeScript / Vite / Tailwindcss
 
 ### CodeSandBox
 
-React : []
+React : [https://codesandbox.io/p/devbox/animated-product-section-lryqcr?file=%2Fconstants%2Findex.ts%3A17%2C1]
