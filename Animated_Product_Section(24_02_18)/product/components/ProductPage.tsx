@@ -18,6 +18,7 @@ const ProductPage = ({ images, name, desc, price }: Props) => {
   const [isClicked, setIsClicked] = useState(false);
 
   const handleImageChange = () => {
+    // 인덱스가 배열의 크기를 벗어난 경우
     if (!images[backImageIndex]) {
       setIsSpinning(true);
 
@@ -38,6 +39,7 @@ const ProductPage = ({ images, name, desc, price }: Props) => {
       setIsFlipped(!isFlipped);
     }
 
+    // isClicked를 처음에만 false로 설정
     if (!isClicked) {
       setIsClicked(true);
     }
