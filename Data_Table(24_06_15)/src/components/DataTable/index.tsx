@@ -21,6 +21,23 @@ const DataTable:React.FC<DataTableProps> = ({data, searchbar = false, excelExpor
   const [pageSize, setpageSize] = useState(10);
   const [selectedRows, setSelectedRows] = useState<string[]>([]);
 
+  const handleSearch = (evnt:React.ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(evnt.target.value)
+    setcurrentPage(0)
+  }
+
+  const handleSort = (accessor:string) => {
+    let direction : "asc" | "desc" | null =  "asc";
+    if(sortConfig && sortConfig.key === accessor) {
+      if (sortConfig.direction === "asc") {
+        direction = "desc";
+      } else if (sortConfig && sortConfig.key === "desc") {
+        direction = null
+      }
+    } 
+
+    setsortConfig({key:accessor, direction});
+  }
 
   return (
     <div>DataTable</div>
