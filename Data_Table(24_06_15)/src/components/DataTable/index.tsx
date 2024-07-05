@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { ColumnData, sortType } from "../../types"
 import * as XLSX from "xlsx";
 
@@ -67,10 +67,55 @@ const DataTable:React.FC<DataTableProps> = ({data, searchbar = false, excelExpor
       setSelectedRows([...selectedRows, String(rowIndex)]);
     } else {
       const updatedSelectedRows = [...selectedRows];
-      updatedSelectedRows.splice(selectedRowIndex, -1);
+      updatedSelectedRows.splice(selectedRowIndex, 1);
       setSelectedRows(updatedSelectedRows)
     }
   }
+
+  const handleDeleteSelectedRows = () => {
+    const updatedData = {...data};
+    selectedRows.forEach((rowIndexString)=>{
+      const rowIndex = parseInt(rowIndexString, 10);
+      columns.forEach((column)=>{
+        updatedData[column].values.splice(rowIndex,1)
+      });
+    });
+    setSelectedRows([]);
+  }
+
+  const rows = useMemo(()=>{
+    return Array.from({length : rowCount}, (_ , index)=>{
+      return columns.reduce((acc, column)=> {
+        acc[column] = data[column].values[index] || "";
+        return acc;
+      }, {} as {[key:string]:string | boolean | number})
+    })
+  },[data,columns,rowCount])
+
+  const sortedRow = useMemo(()=>{
+    if(!sortConfig || !sortConfig.direction) return rows;
+
+    return [...rows].sort((a,b)=>{
+      const aValue = a[sortConfig.key] as string
+      const bValue = b[sortConfig.key] as string
+
+      if(aValue < bValue) return sortConfig.direction === "asc" ? -1 : 1;
+      if(aValue > bValue) return sortConfig.direction === "asc" ? 1 : -1;
+
+      return 0
+    })
+  },[rows,sortConfig])
+
+  const filterRows = useMemo(()=>{
+    return sortedRow.filter((row)=> columns.some((column)=>String(row[column]).toLowerCase().includes(searchTerm.toLowerCase())))
+  },[sortedRow, searchTerm, columns])
+
+  const paginatedRows = useMemo(()=>{
+    const start = currentPage * pageSize;
+    return filterRows.slice(start, start + pageSize);
+  },[filterRows, currentPage, pageSize])
+
+  const totalPages = Math.ceil(filterRows.length / pageSize)
 
   return (
     <div>DataTable</div>
