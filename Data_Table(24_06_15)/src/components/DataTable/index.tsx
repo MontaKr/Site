@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react";
 import { ColumnData, sortType } from "../../types"
 import * as XLSX from "xlsx";
+import { SearchOutline } from "react-ionicons";
 
 interface DataTableProps {
   data:ColumnData;
@@ -57,7 +58,7 @@ const DataTable:React.FC<DataTableProps> = ({data, searchbar = false, excelExpor
     const worksheet = XLSX.utils.json_to_sheet(exportData);
     const workbook = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(workbook, worksheet, "SHEET1");
-    XLSX.writeFile(workbook, "data.xlsx";)
+    XLSX.writeFile(workbook, "data.xlsx");
   }
 
   const handleRowSelect = (rowIndex:number) => {
@@ -118,7 +119,18 @@ const DataTable:React.FC<DataTableProps> = ({data, searchbar = false, excelExpor
   const totalPages = Math.ceil(filterRows.length / pageSize)
 
   return (
-    <div>DataTable</div>
+    <div className="max-w-full overflow-x-auto">
+      <div className="flex w-full items-center justify-between mb-5">
+        {searchbar ? (
+          <div className="flex w-[30%] items-center gap-5 rounded-lg px-3 py-2 bg-[#303030]">
+            <SearchOutline cssClasses={"!text-gray-300"} />
+            <input type="text" placeholder="Search" value={searchTerm} onChange={handleSearch} />
+          </div>
+        ) : (
+          <div></div>
+        )}
+      </div>
+    </div>
   )
 }
 
