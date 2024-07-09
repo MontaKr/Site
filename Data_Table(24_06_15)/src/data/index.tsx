@@ -1,9 +1,9 @@
-import { ColumnData } from "../types";
 import { CheckmarkOutline, CloseOutline } from "react-ionicons";
+import { ColumnData } from "../types";
 
-export const data:ColumnData = {
-    Name : {
-        values : [
+export const data: ColumnData = {
+	Name: {
+		values: [
 			"John Doe",
 			"Jane Smith",
 			"Sam Johnson",
@@ -25,11 +25,14 @@ export const data:ColumnData = {
 			"Benjamin Thompson",
 			"Charlotte Moore",
 		],
-        classNames:(value:string | boolean | number) => value === "Jane Smith" || value === "Emma Martinez" ? "text-green-400 font-medium" : "text-white"
-    },
-    Age:{
-        values : [
-            "28",
+		classNames: (value: string | boolean | number) =>
+			value === "Jane Smith" || value === "Emma Martinez"
+				? "text-green-400 font-medium"
+				: "text-white",
+	},
+	Age: {
+		values: [
+			"28",
 			"34",
 			"45",
 			"29",
@@ -49,10 +52,10 @@ export const data:ColumnData = {
 			"25",
 			"36",
 			"37",
-        ]
-    },
-    Email: {
-        values : [
+		],
+	},
+	Email: {
+		values: [
 			"john.doe@example.com",
 			"jane.smith@example.com",
 			"sam.johnson@example.com",
@@ -74,11 +77,14 @@ export const data:ColumnData = {
 			"benjamin.thompson@example.com",
 			"charlotte.moore@example.com",
 		],
-        classNames:(value:string | boolean | number) => typeof value === "string" && value.includes("john") ? "text-green-400 font-medium" : "text-white"
-    },
-    Role: {
-        values : [
-            "CEO",
+		classNames: (value: string | boolean | number) =>
+			typeof value === "string" && value.includes("john")
+				? "text-green-400 font-medium"
+				: "text-white",
+	},
+	Role: {
+		values: [
+			"CEO",
 			"CTO",
 			"Admin",
 			"Client",
@@ -98,25 +104,26 @@ export const data:ColumnData = {
 			"Musician",
 			"Consultant",
 			"Lawyer",
-        ]
-    },
-    Salary : {
-        values : [
+		],
+	},
+	Salary: {
+		values: [
 			25000, 13000, 7200, 6850, 9100, 8500, 7900, 10400, 5480, 9150, 3200, 12500, 8000, 6000,
 			7400, 8200, 9500, 8800, 7200, 11000,
 		],
-        renderValue:(value:string | boolean | number) => {
-            if(typeof value === "number") {
-                return (
-                    <div className={`font-medium ${value > 8000 ? "text-green-400" : "text-red-400"}`}>
-                        ${value.toLocaleString()}
-                    </div>
-                )
-            }
-        }
-    },
-    Active:{
-        values : [
+		renderValue: (value: string | number | boolean) => {
+			if (typeof value === "number") {
+				return (
+					<div className={`font-medium ${value > 8000 ? "text-green-400" : "text-red-400"}`}>
+						${value.toLocaleString()}
+					</div>
+				);
+			}
+			return value;
+		},
+	},
+	Active: {
+		values: [
 			false,
 			true,
 			false,
@@ -138,6 +145,19 @@ export const data:ColumnData = {
 			true,
 			false,
 		],
-        renderBoolean:(value:boolean) => value ? (<CheckmarkOutline cssClasses={"!text-green-400"} width="30px" height="30px"/>) : (<CloseOutline cssClasses={"!text-red-400"} width="30px" height="30px"/>)
-    }
-}
+		renderBoolean: (value: boolean) =>
+			value ? (
+				<CheckmarkOutline
+					cssClasses={"!text-green-400"}
+					width={"30px"}
+					height={"30px"}
+				/>
+			) : (
+				<CloseOutline
+					cssClasses={"!text-red-400"}
+					width={"30px"}
+					height={"30px"}
+				/>
+			),
+	},
+};

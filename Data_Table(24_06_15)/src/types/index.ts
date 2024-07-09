@@ -12,3 +12,4 @@ export type sortType = {
     key:string;
     direction:"asc" | "desc" | null;
 }
+
