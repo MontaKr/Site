@@ -14,7 +14,7 @@
 ![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)
 
 
-### CodeSandBox
+### Stackblitz
 React : [https://stackblitz.com/edit/stackblitz-starters-yk3v87?description=Starter%20project%20for%20Node.js,%20a%20JavaScript%20runtime%20built%20on%20Chrome%27s%20V8%20JavaScript%20engine&file=tailwind.config.js,src%2Findex.css,src%2FApp.tsx&title=node.new%20Starter](https://stackblitz.com/edit/stackblitz-starters-yk3v87?description=Starter%20project%20for%20Node.js,%20a%20JavaScript%20runtime%20built%20on%20Chrome%27s%20V8%20JavaScript%20engine&file=tailwind.config.js,src%2Findex.css,src%2FApp.tsx&title=node.new%20Starter)
 
 ---
