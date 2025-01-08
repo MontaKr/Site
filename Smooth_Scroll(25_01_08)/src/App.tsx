@@ -97,7 +97,7 @@ function App() {
     <Wrap>
       <section ref={archiveRef} className="archive">
         <div className="archive_slider">
-          {[...Array(9)].map((_, index) => (
+          {[...Array(8)].map((_, index) => (
             <figure className="archive_slider_figure" key={index}>
               <img
                 className="archive_slider_image"
@@ -110,8 +110,8 @@ function App() {
       </section>
       <section className="circle">
         <div className="circle_container">
-          {[...Array(9)].map((_, index) => (
-            <figure className="archive_slider_figure" key={index}>
+          {[...Array(8)].map((_, index) => (
+            <figure className="circle_figure" key={index}>
               <img
                 className="circle_figure"
                 src={`/${String(index).padStart(2, "0")}.jpeg`}
