@@ -4,6 +4,9 @@ import { Wrap } from "./style";
 
 function App() {
   const archiveRef = useRef<HTMLElement>(null);
+  const figureRefs = useRef<(HTMLElement | null)[]>([]);
+  const imageRefs = useRef<(HTMLElement | null)[]>([]);
+  const circleRefs = useRef<(HTMLElement | null)[]>([]);
 
   useEffect(() => {
     const settings = {
@@ -15,6 +18,8 @@ function App() {
     const figureScales = new Map();
 
     const initLenis = () => {
+      if (!archiveRef.current) return;
+
       const lenis = new Lenis({
         orientation: "horizontal",
         content: archiveRef.current,
@@ -22,10 +27,15 @@ function App() {
         smoothWheel: true,
       });
 
+      let rafId = 0;
+
       const handleLenisScroll = () => {
-        const figures = document.querySelectorAll(".archive_slider_figure");
-        figures.forEach((figure) => {
-          const image = figure.querySelector(".archive_slider_image");
+        figureRefs.current.forEach((figure, index) => {
+          if (!figure) return;
+
+          const image = imageRefs.current[index];
+          if (!image) return;
+
           const figureRect = figure.getBoundingClientRect();
           const distanceFromCenter = Math.abs(
             figureRect.left + figureRect.width / 2 - settings.center
@@ -47,24 +57,24 @@ function App() {
 
       lenis.on("scroll", handleLenisScroll);
 
-      let rafId: number;
       function raf(time: number) {
         lenis.raf(time);
         rafId = requestAnimationFrame(raf);
       }
       requestAnimationFrame(raf);
 
-      lenis.scrollTo(0, 0);
+      lenis.scrollTo(0);
 
       return { lenis, rafId };
     };
 
     const utilityCircle = () => {
-      const figures = document.querySelectorAll(".circle_figure");
       const radius = 35;
-      const totalFigures = figures.length;
+      const totalFigures = circleRefs.current.length;
 
-      figures.forEach((figure, index) => {
+      circleRefs.current.forEach((figure, index) => {
+        if (!figure) return;
+
         const angle = (index / totalFigures) * Math.PI * 2;
         const x = Math.cos(angle) * radius;
         const y = Math.sin(angle) * radius;
@@ -81,15 +91,19 @@ function App() {
       settings.center = window.innerWidth / 2;
     };
 
-    window.addEventListener("resize", handleResize);
-    const { lenis, rafId } = initLenis();
-    utilityCircle();
+    const lenisInstance = initLenis();
+    if (lenisInstance) {
+      const { lenis, rafId } = lenisInstance;
+      utilityCircle();
 
-    // Cleanup function
+      return () => {
+        window.removeEventListener("resize", handleResize);
+        if (rafId) cancelAnimationFrame(rafId);
+        lenis.destroy();
+      };
+    }
     return () => {
       window.removeEventListener("resize", handleResize);
-      if (rafId) cancelAnimationFrame(rafId);
-      lenis.destroy();
     };
   }, []);
 
@@ -98,11 +112,16 @@ function App() {
       <section ref={archiveRef} className="archive">
         <div className="archive_slider">
           {[...Array(8)].map((_, index) => (
-            <figure className="archive_slider_figure" key={index}>
+            <figure
+              className="archive_slider_figure"
+              key={index}
+              ref={(el) => (figureRefs.current[index] = el)}
+            >
               <img
                 className="archive_slider_image"
                 src={`/${String(index).padStart(2, "0")}.jpeg`}
                 alt=""
+                ref={(el) => (imageRefs.current[index] = el)}
               />
             </figure>
           ))}
@@ -111,7 +130,11 @@ function App() {
       <section className="circle">
         <div className="circle_container">
           {[...Array(8)].map((_, index) => (
-            <figure className="circle_figure" key={index}>
+            <figure
+              className="circle_figure"
+              key={index}
+              ref={(el) => (circleRefs.current[index] = el)}
+            >
               <img
                 className="circle_figure"
                 src={`/${String(index).padStart(2, "0")}.jpeg`}
