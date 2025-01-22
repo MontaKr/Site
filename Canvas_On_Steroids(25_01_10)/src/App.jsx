@@ -67,6 +67,7 @@ function App() {
         ctx.lineTo(x + halfSize, y - halfSize);
         ctx.lineTo(x - halfSize, y - halfSize);
       }
+
       ctx.closePath();
 
       ctx.fillStyle = "#ff6b00";

@@ -1,0 +1,1 @@
+self.__NEXT_FONT_MANIFEST="{\"pages\":{},\"app\":{\"/Users/imjihun/Desktop/Z/Code/Site/next-parallax-scroll-2025-01-20/src/app/layout\":[\"static/media/569ce4b8f30dc480.p.woff2\",\"static/media/93f479601ee12b01.p.woff2\"]},\"appUsingSizeAdjust\":false,\"pagesUsingSizeAdjust\":false}"
