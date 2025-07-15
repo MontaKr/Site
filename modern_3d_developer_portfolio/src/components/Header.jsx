@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FiGithub, FiTwitter, FiLinkedin, FiMenu, FiX } from "react-icons/fi";
-import { div } from "framer-motion/client";
 
 const Header = () => {
   // Toggle the Menu open/close
