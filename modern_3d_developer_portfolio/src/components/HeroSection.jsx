@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import Spline from "@splinetool/react-spline";
 
 const HeroSection = () => {
   return (
@@ -38,6 +39,12 @@ const HeroSection = () => {
           time.
         </motion.p>
       </div>
+
+      {/* Right Section */}
+      <Spline
+        scene="https://prod.spline.design/h3BDY1yY45BjT6ho/scene.splinecode"
+        className="absolute xl:right-[-28%] right-0 top-[-20%] lg:top-0"
+      />
     </section>
   );
 };
