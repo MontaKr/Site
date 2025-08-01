@@ -11,9 +11,6 @@ const CustomCursor = () => {
     typeof window !== "undefined" &&
     window.matchMedia("(max-width: 768px)").matches;
 
-  if (isMobile) {
-    return null;
-  }
   useEffect(() => {
     // Get cursor elements
     const cursor = cursorRef.current;
@@ -71,10 +68,11 @@ const CustomCursor = () => {
         duration: 0.2,
       });
     });
-
-    // Cleanup function
-    return () => {};
   }, []);
+
+  if (isMobile) {
+    return null;
+  }
 
   return (
     <>
